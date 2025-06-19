@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Growth Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to ensure Inter font is applied */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Basic dark mode transition for body background and text */
+        html.dark body {
+            transition-property: background-color, color;
+            transition-duration: 300ms;
+        }
+
+        /* Carousel image transition for smoother effect */
+        #carousel-image {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Chart bar styling for transition */
+        .chart-bar {
+            transition: height 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <!-- Header Section -->
+    <header class="bg-white dark:bg-gray-800 shadow-md dark:shadow-lg transition-colors duration-300 py-4 px-6 md:px-8 lg:px-12">
+        <div class="container mx-auto flex justify-between items-center flex-wrap">
+            <h1 class="text-2xl font-bold text-blue-600">BusinessBoost</h1>
+            <nav class="flex items-center space-x-4 mt-2 md:mt-0">
+                <a href="#home" class="text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">Home</a>
+                <a href="#solutions" class="text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">Solutions</a>
+                <a href="#insights" class="text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">Insights</a>
+                <a href="#contact" class="text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">Contact</a>
+                <!-- Theme Toggle Button -->
+                <button
+                    id="theme-toggle"
+                    class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    aria-label="Toggle theme"
+                >
+                    <!-- Sun icon for light mode -->
+                    <svg id="sun-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325-4.675l.707-.707M6.675 17.325l-.707.707M17.325 17.325l.707.707M6.675 6.675l-.707-.707M12 18a6 6 0 100-12 6 6 0 000 12z" />
+                    </svg>
+                    <!-- Moon icon for dark mode (initially hidden) -->
+                    <svg id="moon-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9 9 0 008.354-5.646z" />
+                    </svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- About Section -->
+        <section class="mb-12 text-center" id="home">
+            <h2 class="text-3xl font-bold mb-4">Empowering Your Business Growth</h2>
+            <p class="text-lg leading-relaxed">
+                Unlock your business's full potential with our comprehensive suite of tools and insights. We help you
+                strategize, optimize, and achieve your goals.
+            </p>
+        </section>
+
+        <!-- Carousel Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-6">Our Business in Action</h2>
+            <div class="relative w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-xl dark:shadow-2xl">
+                <img id="carousel-image"
+                    src="https://placehold.co/800x450/336699/ffffff?text=Business+Meeting"
+                    alt="Business Meeting"
+                    class="w-full h-auto object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/800x450/cccccc/333333?text=Image+Load+Error';"
+                >
+
+                <!-- Navigation Buttons -->
+                <button
+                    id="prev-btn"
+                    class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full shadow-md hover:bg-opacity-75 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+                    aria-label="Previous image"
+                >
+                    &#10094; <!-- Left arrow -->
+                </button>
+                <button
+                    id="next-btn"
+                    class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full shadow-md hover:bg-opacity-75 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white"
+                    aria-label="Next image"
+                >
+                    &#10095; <!-- Right arrow -->
+                </button>
+
+                <!-- Dot Indicators -->
+                <div id="dot-indicators" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    <!-- Dots will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="mb-12" id="insights">
+            <h2 class="text-3xl font-bold text-center mb-6">Performance Insights</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md dark:shadow-lg transition-colors duration-300">
+                <h3 class="text-xl font-semibold mb-4">Quarterly Sales Performance</h3>
+                <div class="flex justify-around items-end h-64 gap-2">
+                    <div class="flex flex-col items-center justify-end h-full">
+                        <div class="w-12 bg-blue-500 rounded-t-lg chart-bar" style="height: 60%;"></div>
+                        <span class="mt-2 text-sm text-gray-600 dark:text-gray-300">Q1</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-end h-full">
+                        <div class="w-12 bg-blue-500 rounded-t-lg chart-bar" style="height: 85%;"></div>
+                        <span class="mt-2 text-sm text-gray-600 dark:text-gray-300">Q2</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-end h-full">
+                        <div class="w-12 bg-blue-500 rounded-t-lg chart-bar" style="height: 70%;"></div>
+                        <span class="mt-2 text-sm text-gray-600 dark:text-gray-300">Q3</span>
+                    </div>
+                    <div class="flex flex-col items-center justify-end h-full">
+                        <div class="w-12 bg-blue-500 rounded-t-lg chart-bar" style="height: 95%;"></div>
+                        <span class="mt-2 text-sm text-gray-600 dark:text-gray-300">Q4</span>
+                    </div>
+                </div>
+                <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
+                    Illustrative sales data showing consistent growth.
+                </p>
+            </div>
+        </section>
+
+        <!-- Feature Cards Section -->
+        <section class="mb-12" id="solutions">
+            <h2 class="text-3xl font-bold text-center mb-6">Our Business Solutions</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md dark:shadow-lg transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl hover:scale-105 transform">
+                    <div class="text-4xl mb-4 text-blue-600 dark:text-blue-400">📊</div>
+                    <h3 class="text-xl font-semibold mb-2">Data-Driven Strategy</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Utilize powerful analytics to make informed decisions and drive growth.</p>
+                </div>
+                <!-- Feature Card 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md dark:shadow-lg transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl hover:scale-105 transform">
+                    <div class="text-4xl mb-4 text-blue-600 dark:text-blue-400">📈</div>
+                    <h3 class="text-xl font-semibold mb-2">Scalable Operations</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Build a robust infrastructure that scales with your expanding business needs.</p>
+                </div>
+                <!-- Feature Card 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md dark:shadow-lg transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl hover:scale-105 transform">
+                    <div class="text-4xl mb-4 text-blue-600 dark:text-blue-400">🤝</div>
+                    <h3 class="text-xl font-semibold mb-2">Enhanced Collaboration</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Foster seamless teamwork with integrated communication and project tools.</p>
+                </div>
+                <!-- Feature Card 4 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md dark:shadow-lg transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl hover:scale-105 transform">
+                    <div class="text-4xl mb-4 text-blue-600 dark:text-blue-400">🔒</div>
+                    <h3 class="text-xl font-semibold mb-2">Secure & Reliable</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Protect your valuable business assets with top-tier security measures.</p>
+                </div>
+                <!-- Feature Card 5 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md dark:shadow-lg transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl hover:scale-105 transform">
+                    <div class="text-4xl mb-4 text-blue-600 dark:text-blue-400">💡</div>
+                    <h3 class="text-xl font-semibold mb-2">Innovative Solutions</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Access cutting-edge technology and creative strategies for competitive advantage.</p>
+                </div>
+                <!-- Feature Card 6 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md dark:shadow-lg transition-all duration-300 hover:shadow-xl dark:hover:shadow-2xl hover:scale-105 transform">
+                    <div class="text-4xl mb-4 text-blue-600 dark:text-blue-400">🎯</div>
+                    <h3 class="text-xl font-semibold mb-2">Goal-Oriented Focus</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Stay on track with clear objectives and performance tracking to hit your targets.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="text-center py-8" id="contact">
+            <h2 class="text-3xl font-bold mb-4">Partner with Us for Success</h2>
+            <p class="text-lg">
+                Ready to take your business to the next level? Contact us today to discuss your goals!
+            </p>
+            <button class="mt-6 px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300">
+                Get a Free Consultation
+            </button>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-200 dark:bg-gray-800 text-center py-6 px-4 md:px-8 lg:px-12 shadow-inner dark:shadow-none transition-colors duration-300">
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+            &copy; <span id="current-year"></span> BusinessBoost. All rights reserved.
+        </p>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // --- Light/Dark Mode Toggle ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+
+            // Function to set theme
+            const setTheme = (theme) => {
+                if (theme === 'dark') {
+                    htmlElement.classList.add('dark');
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                } else {
+                    htmlElement.classList.remove('dark');
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                }
+                localStorage.setItem('theme', theme);
+            };
+
+            // Initialize theme from local storage or default to light
+            const storedTheme = localStorage.getItem('theme');
+            setTheme(storedTheme || 'light');
+
+            // Event listener for theme toggle button
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+                setTheme(currentTheme === 'light' ? 'dark' : 'light');
+            });
+
+            // --- Image Carousel ---
+            const images = [
+                'https://placehold.co/800x450/336699/ffffff?text=Business+Meeting',
+                'https://placehold.co/800x450/669933/ffffff?text=Growth+Chart',
+                'https://placehold.co/800x450/993366/ffffff?text=Team+Collaboration',
+                'https://placehold.co/800x450/339966/ffffff?text=Success+Strategy',
+                'https://placehold.co/800x450/FF6347/ffffff?text=Innovation',
+                'https://placehold.co/800x450/4682B4/ffffff?text=Global+Reach'
+            ];
+            let currentIndex = 0;
+
+            const carouselImage = document.getElementById('carousel-image');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const dotIndicators = document.getElementById('dot-indicators');
+
+            // Function to update carousel image and dots
+            const updateCarousel = () => {
+                carouselImage.style.opacity = '0'; // Fade out
+                setTimeout(() => {
+                    carouselImage.src = images[currentIndex];
+                    carouselImage.alt = images[currentIndex].split('?text=')[1].replace(/\+/g, ' '); // Dynamic alt text from placeholder
+                    carouselImage.style.opacity = '1'; // Fade in
+
+                    // Update dot indicators
+                    dotIndicators.innerHTML = ''; // Clear existing dots
+                    images.forEach((_, index) => {
+                        const dot = document.createElement('button');
+                        dot.classList.add('h-3', 'w-3', 'rounded-full', 'transition-colors', 'duration-300', 'focus:outline-none', 'focus:ring-2', 'focus:ring-white');
+                        if (index === currentIndex) {
+                            dot.classList.add('bg-white');
+                        } else {
+                            dot.classList.add('bg-gray-400');
+                        }
+                        dot.setAttribute('aria-label', `Go to image ${index + 1}`);
+                        dot.addEventListener('click', () => {
+                            currentIndex = index;
+                            updateCarousel();
+                        });
+                        dotIndicators.appendChild(dot);
+                    });
+                }, 300); // Match CSS transition duration
+            };
+
+            // Event listeners for carousel navigation
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+                updateCarousel();
+            });
+
+            // Initial carousel setup
+            updateCarousel();
+        });
+    </script>
+</body>
+</html>
